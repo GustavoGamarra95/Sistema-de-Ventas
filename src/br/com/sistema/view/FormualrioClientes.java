@@ -9,6 +9,8 @@ import br.com.sistema.model.Clientes;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -78,7 +80,6 @@ public class FormualrioClientes extends javax.swing.JFrame {
         BtnImprimir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -126,6 +127,11 @@ public class FormualrioClientes extends javax.swing.JFrame {
         });
 
         BtnBusqueda.setText("Buscar");
+        BtnBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBusquedaActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("E-mail:");
 
@@ -409,6 +415,41 @@ public class FormualrioClientes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TextRgCaretPositionChanged
 
+    private void BtnBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBusquedaActionPerformed
+        // TODO add your handling code here:
+        String nombre = TextNombre.getText();
+        Clientes obj = new Clientes();
+        ClientesDAO dao = new ClientesDAO();
+        
+        obj = dao.buscarCliente(nombre);
+        if(obj.getNombre() != null){
+            TextCodigo.setText(String.valueOf(obj.getId()));
+            TextNombre.setText(obj.getNombre());
+            TextBarrio.setText(obj.getBarrio());
+            TextCep.setText(obj.getCep());
+            TextCiudad.setText(obj.getCiudad());
+            TextComplemento.setText(obj.getComplemento());
+            TextCpf.setText(obj.getCpf());
+            TextDireccion.setText(obj.getDireccion());
+            TextEmail.setText(obj.getEmail());
+            TextN.setText(obj.getNumero());
+            TextRg.setText(obj.getRg());
+            TextCelular.setText(obj.getTelefono());
+            CbUf.setSelectedItem(obj.getUf());
+            CbSexo.setSelectedItem(obj.getSexo());
+            TextComplemento.setText(obj.getcomplemento());
+        }else{
+            JOptionPane.showMessageDialog(null,"Cliente no encontrado");
+        }
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_BtnBusquedaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -490,4 +531,5 @@ public class FormualrioClientes extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
-}
+
+  

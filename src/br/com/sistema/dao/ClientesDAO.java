@@ -1,51 +1,4 @@
-//package br.com.sistema.dao;
-//
-//
-//import br.com.sistema.jdbc.conexionbanco;
-//import br.com.sistema.view.Clientes;
-//import java.sql.Connection;
-//import java.sql.PreparedStatement;
-//import java.sql.SQLException;
-//import javax.swing.JOptionPane;
-//
-//
-///**
-// * DAO class for managing `clientes` entities.
-// */
-//public class ClientesDAO {
-//    private Connection conn;
-//    
-//    public ClientesDAO(){
-//        this.conn = new conexionbanco().conectardb();
-//    }
-//    
-//    public void guardar(Clientes obj) throws SQLException {
-//      
-//        try{
-//            String sql = "INSERT INTO tb_cliente (nombre, rg, cpf, email, telefono, celular, cep, direccion, numero, barrio, ciudad, estado) "
-//                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-//            PreparedStatement stmt = conn.prepareStatement(sql);
-//            stmt.setString(1, obj.getNombre());
-//            stmt.setString(2, obj.getRg());
-//            stmt.setString(3, obj.getCpf());
-//            stmt.setString(4, obj.getEmail());
-//            stmt.setString(5, obj.getTelefono());
-//            stmt.setString(6, obj.getTelefono());
-//            stmt.setString(7, obj.getCep());
-//            stmt.setString(8, obj.getDireccion());
-//            stmt.setString(9, obj.getNumero());
-//            stmt.setString(10, obj.getBarrio());
-//            stmt.setString(11, obj.getCiudad());
-//            stmt.setString(12, obj.getEstado());
-//            
-//            stmt.executeUpdate();
-//            stmt.close();
-//            JOptionPane.showMessageDialog(null, "Cliente guardado");
-//        } catch (SQLException e) {
-//            JOptionPane.showMessageDialog(null, "Error al guardar el cliente");
-//        }
-//    }
-//}
+
 package br.com.sistema.dao;
 
 
@@ -55,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import java.sql.ResultSet;
 
 /**
  * DAO class for managing `clientes` entities.
@@ -98,4 +52,72 @@ public class ClientesDAO {
             throw e;
         }
     }
+//    public Clientes BuscarCliente(String nombre){
+//        String sql = "select * from_clientes where nome =?";
+//    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+//        stmt.setString(1, obj.getNombre());
+//        ResultSet = stmt.executeQuery();
+//        Clientes obj = new Clientes();
+//        if(rs.next()){
+//            obj.setId(rs.Int("id"));
+//            obj.setNombre(rs.getString("nombre"));
+//            obj.setRg(rs.getString("rg"));
+//            obj.setCpf(rs.getString("cpf"));
+//            obj.setEmail(rs.getString("email"));
+//            obj.setTelefono(rs.getString("Telefono"));
+//            obj.setCep(rs.getString("cep"));
+//            obj.setDireccion(rs.getString("direccion"));
+//            obj.setNumero(rs.getInt("numero"));
+//            obj.setBarrio(rs.getString("barrio"));
+//            obj.setCiudad(rs.getString("ciudad"));
+//            obj.setUf(rs.getString("uf"));
+//            obj.setComplemento(rs.getString("complemento"));
+//            obj.setSexo(rs.getString("sexo"));
+//           
+//        }
+//        
+//    } catch (Exception e){
+//        JOptionPane.showMessageDialog(null,"Error al buscar el cliente" e);
+//    }
+//    return null;
+//        
+//  }
+    public Clientes buscarCliente(String nombre) {
+        String sql = "SELECT * FROM cliente WHERE nombre = ?";
+        
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, nombre);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            if (rs.next()) {
+                Clientes clienteEncontrado = new Clientes();
+                clienteEncontrado.setId(rs.getInt("id"));
+                clienteEncontrado.setNombre(rs.getString("nombre"));
+                clienteEncontrado.setRg(rs.getString("rg"));
+                clienteEncontrado.setCpf(rs.getString("cpf"));
+                clienteEncontrado.setEmail(rs.getString("email"));
+                clienteEncontrado.setTelefono(rs.getString("telefono"));
+                clienteEncontrado.setCep(rs.getString("cep"));
+                clienteEncontrado.setDireccion(rs.getString("direccion"));
+                clienteEncontrado.setNumero(rs.getString("numero"));
+                clienteEncontrado.setBarrio(rs.getString("barrio"));
+                clienteEncontrado.setCiudad(rs.getString("ciudad"));
+                clienteEncontrado.setUf(rs.getString("uf"));
+                clienteEncontrado.setComplemento(rs.getString("complemento"));
+                clienteEncontrado.setSexo(rs.getString("sexo"));
+                
+                JOptionPane.showMessageDialog(null, "Cliente encontrado!!");
+                return clienteEncontrado;
+            } else {
+                JOptionPane.showMessageDialog(null, "Cliente no encontrado.");
+                return null;
+            }
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al buscar el cliente: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+    }
 }
+
