@@ -8,23 +8,29 @@ package br.com.sistema.model;
  *
  * @author gustavo
  */
-public class clientes {
+public class Clientes {
     private int id;
     private String nombre;
-    private String rg;
     private String cpf;
+    private String direccion;
     private String email;
     private String telefono;
-    private String celular;
     private String cep;
-    private String direccion;
     private String numero;
-    private String complemento;
     private String barrio;
     private String ciudad;
-    private String estado;
-    private String Sexo;
+    private String rg;
+    private String uf;
+    private String sexo;
+    private String complemento;
 
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
 
     public int getId() {
         return id;
@@ -42,20 +48,20 @@ public class clientes {
         this.nombre = nombre;
     }
 
-    public String getRg() {
-        return rg;
-    }
-
-    public void setRg(String rg) {
-        this.rg = rg;
-    }
-
     public String getCpf() {
         return cpf;
     }
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
     public String getEmail() {
@@ -74,14 +80,6 @@ public class clientes {
         this.telefono = telefono;
     }
 
-    public String getCelular() {
-        return celular;
-    }
-
-    public void setCelular(String celular) {
-        this.celular = celular;
-    }
-
     public String getCep() {
         return cep;
     }
@@ -90,28 +88,12 @@ public class clientes {
         this.cep = cep;
     }
 
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
     public String getNumero() {
         return numero;
     }
 
     public void setNumero(String numero) {
         this.numero = numero;
-    }
-
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
     }
 
     public String getBarrio() {
@@ -130,34 +112,32 @@ public class clientes {
         this.ciudad = ciudad;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getRg() {
+        return rg;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
     }
 
     public String getSexo() {
-        return Sexo;
+        return sexo;
     }
 
-    public void setSexo(String Sexo) {
-        this.Sexo = Sexo;
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
-    
 
-    public void setCodigo(String text) {
+    public String getcomplemento() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
-    public void setUf(String toString) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public void setcodigo(String text) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
     
 }

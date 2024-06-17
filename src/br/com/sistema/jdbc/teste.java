@@ -5,6 +5,7 @@
 package br.com.sistema.jdbc;
 
 import java.awt.HeadlessException;
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,11 +19,15 @@ public class teste {
      */
     public static void main(String[] args) {
         try {
-            new test().conectardb();
+            new conexionbanco().conectardb();
             JOptionPane.showMessageDialog(null, "Conectado al banco de datos");
         } catch (HeadlessException erro) {
             JOptionPane.showMessageDialog(null,"Error al conectar al banco de dados" + erro.getMessage());
         }
+    }
+
+    public Connection conectar() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }
